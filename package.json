@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon -r esm index.js --ignore db.json",
-    "start": "node index.js"
+    "start": "node start.js"
   },
   "keywords": [
     "Scraper",
@@ -23,5 +23,9 @@
     "lowdb": "^1.0.0",
     "node-cron": "^2.0.3",
     "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0"
   }
 }
