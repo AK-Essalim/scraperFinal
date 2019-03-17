@@ -30,6 +30,6 @@ app.get("/scrape", async (req, res, next) => {
   console.log("done");
 });
 
-const listener = app.listen(2093, () =>
+const listener = app.listen(process.env.PORT || 2093, () =>
   console.log(`example app running on port ${listener.address().port}`)
 );

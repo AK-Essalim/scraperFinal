@@ -4,7 +4,8 @@
   "description": "Based on a tutorial by Wes Bos",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -r esm index.js --ignore db.json"
+    "dev": "nodemon -r esm index.js --ignore db.json",
+    "start": "node -r esm index.js",
   },
   "keywords": [
     "Scraper",
