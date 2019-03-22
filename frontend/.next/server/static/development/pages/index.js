@@ -244,53 +244,62 @@ var _jsxFileName = "/Users/Skynet/Desktop/Scraper_3_cronJob/frontend/components/
 
 function Data() {
   var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_ScrapeContext__WEBPACK_IMPORTED_MODULE_1__["ScrapeContext"]),
-      scrapes = _useContext.scrapes;
+      scrapes = _useContext.scrapes,
+      fetchScrapes = _useContext.fetchScrapes;
 
-  console.log(scrapes);
+  console.log(fetchScrapes);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 11
     },
     __self: this
-  }, "Your twitter:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    scrapes: scrapes.twitter,
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    onClick: fetchScrapes,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 12
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, "Refresh The Follows"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
     scrapes: scrapes.twitter,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    },
-    __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    },
-    __self: this
-  }, "Your Instagram:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    scrapes: scrapes.instagram,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 15
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chart__WEBPACK_IMPORTED_MODULE_3__["default"], {
     scrapes: scrapes.instagram,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, "Twitter: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    scrapes: scrapes.twitter,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: this
+  }, "Instagram"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    scrapes: scrapes.instagram,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
     },
     __self: this
   }));
@@ -331,10 +340,16 @@ function useScrapes() {
   }),
       _useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__["default"])(_useState, 2),
       scrapes = _useState2[0],
-      setScrapes = _useState2[1];
+      setScrapes = _useState2[1]; //The Fetch function
 
-  Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
-    Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
+
+  function fetchScrapes() {
+    return _fetchScrapes.apply(this, arguments);
+  } //DidMount / Update
+
+
+  function _fetchScrapes() {
+    _fetchScrapes = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__["default"])(
     /*#__PURE__*/
     _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var res, data;
@@ -342,41 +357,46 @@ function useScrapes() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log('Mounting or Updating');
-              _context.next = 3;
+              _context.next = 2;
               return fetch('http://localhost:2093/Data');
 
-            case 3:
+            case 2:
               res = _context.sent;
-              _context.next = 6;
+              _context.next = 5;
               return res.json();
 
-            case 6:
+            case 5:
               data = _context.sent;
-              console.log(data);
+              //console.log(data);
               setScrapes(data);
 
-            case 9:
+            case 7:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
-    }))();
+    }));
+    return _fetchScrapes.apply(this, arguments);
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_3__["useEffect"])(function () {
+    fetchScrapes();
   }, []);
-  return scrapes;
+  return {
+    scrapes: scrapes,
+    fetchScrapes: fetchScrapes
+  };
 }
 
-function Page(_ref2) {
-  var children = _ref2.children;
-  var scrapes = useScrapes();
+function Page(_ref) {
+  var children = _ref.children;
+  var hookInfo = useScrapes();
   return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_ScrapeContext__WEBPACK_IMPORTED_MODULE_4__["ScrapeProvider"], {
-    value: {
-      scrapes: scrapes
-    },
+    value: hookInfo,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 32
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
@@ -458,7 +478,7 @@ function Table(_ref) {
       lineNumber: 9
     },
     __self: this
-  }, " C ount "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
+  }, " Count "), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10

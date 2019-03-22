@@ -6,7 +6,7 @@ export default function Table({ scrapes }) {
     <table>
       <thead>
         <tr>
-          <td> C ount </td>
+          <td> Count </td>
           <td> Time </td>
         </tr>
       </thead>
